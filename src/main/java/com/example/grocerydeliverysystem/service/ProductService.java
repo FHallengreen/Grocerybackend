@@ -44,8 +44,11 @@ public class ProductService {
 
     public ResponseEntity<ProductResponse> getProductByName(String name) {
 
-        Product product = productRepository.findByName(name).orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Product not found"));
+        Product product = productRepository.findByName(name);
 
+        if (product == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Product not found");
+        }
         return ResponseEntity.ok(new ProductResponse(product));
     }
 

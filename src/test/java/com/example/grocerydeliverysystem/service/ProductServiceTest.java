@@ -46,10 +46,7 @@ ProductRepository productRepository;
 
         assertEquals("Apple", response.getName());
 
-        Optional<Product> optionalProduct = productRepository.findByName("Apple");
-
-        assertTrue(optionalProduct.isPresent());
-        Product product = optionalProduct.get();
+        Product product = productRepository.findByName("Apple");
 
         // Verify that the product's details are correct
         assertEquals("Apple", product.getName());
@@ -67,7 +64,7 @@ ProductRepository productRepository;
 
     @Test
     void getProductByName() {
-        ProductResponse response = productService.getProductByName("Milk");
+        ProductResponse response = productService.getProductByName("Milk").getBody();
 
         assertEquals("Milk", response.getName());
         assertEquals(10, response.getPrice());
