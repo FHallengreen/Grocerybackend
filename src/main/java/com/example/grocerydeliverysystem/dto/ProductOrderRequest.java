@@ -9,6 +9,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ProductOrderRequest {
 
+    private int deliveryId;
     private int productId;
     private int quantity;
 }
